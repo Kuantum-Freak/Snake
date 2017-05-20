@@ -40,3 +40,11 @@ void Snake::move() {
 		snake.erase(0);
 	}
 }
+
+void Snake::eat() {
+	
+}
+
+void Snake::turn(Direction dir) {
+	snake.push_back(new Segment{0, Snake::getComplement(dir)});
+}

@@ -33,9 +33,11 @@ public:
 	
 	void move();
 	void eat();
-	void turn();
+	void turn(Direction dir);
 	
 	void render();
+	
+	static Direction getComplement(Direction dir);
 	
 private:
 	struct Segment {
