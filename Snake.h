@@ -15,9 +15,35 @@
  * =============================================================================
  */
 
-#ifndef _
-#define _
+#pragma once
 
+#include "main.h"
 
+enum Direction {
+	DIR_NORTH,
+	DIR_EAST,
+	DIR_SOUTH,
+	DIR_WEST
+};
 
-#endif
+class Snake {
+public:
+	Snake();
+	~Snake();
+	
+	void move();
+	void eat();
+	void turn();
+	
+	void render();
+	
+private:
+	struct Segment {
+		int length;
+		Direction end;
+	};
+	
+	Direction headDir;
+	std::vector<Segment*> snake;
+
+};
