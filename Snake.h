@@ -42,10 +42,11 @@ public:
 private:
 	struct Segment {
 		int length;
-		Direction end;
+		Direction dir;
 	};
 	
 	Direction headDir;
+	Coordinate tail;
 	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
 
 };
