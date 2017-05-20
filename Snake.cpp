@@ -46,7 +46,7 @@ void Snake::eat() {
 }
 
 void Snake::turn(Direction dir) {
-	snake.push_back(new Segment{0, Snake::getComplement(dir)});
+	snake.push_back(new Segment{0, dir});
 }
 
 void Snake::render() {
