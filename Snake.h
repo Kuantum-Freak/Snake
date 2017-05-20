@@ -15,16 +15,38 @@
  * =============================================================================
  */
 
-#ifndef MAIN_H_INCLUDED
-#define MAIN_H_INCLUDED
+#pragma once
 
-struct Coordinate {
-	int x,
-	int y
-	
-	bool operator==(Coordinate b);
+#include "main.h"
+
+enum Direction {
+	DIR_NORTH,
+	DIR_EAST,
+	DIR_SOUTH,
+	DIR_WEST
 };
 
-int main(int argc, char* argv[]);
+class Snake {
+public:
+	Snake();
+	~Snake();
+	
+	void move();
+	void eat();
+	void turn(Direction dir);
+	
+	void render();
+	
+	static Direction getComplement(Direction dir);
+	
+private:
+	struct Segment {
+		int length;
+		Direction dir;
+	};
+	
+	Direction headDir;
+	Coordinate tail;
+	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
 
-#endif // MAIN_H_INCLUDED
+};
