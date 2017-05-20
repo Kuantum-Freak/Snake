@@ -48,3 +48,30 @@ void Snake::eat() {
 void Snake::turn(Direction dir) {
 	snake.push_back(new Segment{0, Snake::getComplement(dir)});
 }
+
+void Snake::render() {
+	Coordinate currBlock = tail;
+	for(auto s : snake) {
+		for(int i = 0; i < s->length) {
+			renderBlock(currBlock);
+			
+			switch(s->dir) {
+				case DIR_NORTH:
+					--currBlock.y;
+				break;
+				
+				case DIR_EAST:
+					++currBlock.x;
+				break;
+				
+				case DIR_SOUTH:
+					++currBlock.y;
+				break;
+				
+				case DIR_WEST:
+					--currBlock.x;
+				break;
+			}
+		}
+	}
+}
