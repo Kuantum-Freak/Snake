@@ -44,6 +44,6 @@ private:
 	};
 	
 	Direction headDir;
-	std::vector<Segment*> snake;
+	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
 
 };
