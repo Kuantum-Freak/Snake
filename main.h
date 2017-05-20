@@ -18,6 +18,12 @@
 #ifndef MAIN_H_INCLUDED
 #define MAIN_H_INCLUDED
 
+struct Coordinate {
+	int x,
+	int y
+	
+	bool operator==(Coordinate b);
+};
 
 int main(int argc, char* argv[]);
 
