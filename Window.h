@@ -15,8 +15,7 @@
  * =============================================================================
  */
 
-#ifndef WINDOW_H_INC
-#define WINDOW_H_INC
+#pragma once
 
 #include <SDL.h>
 
@@ -35,6 +34,3 @@ private:
 	void clear();
 	
 };
-
-
-#endif // WINDOW_H_INC
