@@ -19,11 +19,15 @@
 #include "main.h"
 
 Game::Game() {
-	
+	window = new Window();
+	snake = new Snake();
+	fruit = new Fruit();
 }
 
 Game::~Game() {
-	
+	delete window;
+	delete snake;
+	delete fruit;
 }
 
 void Game::loop() {
