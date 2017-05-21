@@ -24,9 +24,9 @@
 #include "Snake.h"
 #include "Fruit.h"
 
-static const int FPS = 45;
-const int MAP_W = 20;
-const int MAP_H = 20;
+static const int FPS = 5;
+const int MAP_W = 50;
+const int MAP_H = 50;
 
 Game::Game() {
 	window = new Window();

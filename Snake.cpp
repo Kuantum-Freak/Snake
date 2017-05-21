@@ -26,7 +26,7 @@
 Snake::Snake() {
 	tail = {MAP_W / 2, MAP_H / 2};
 	headDir = DIR_NORTH;
-	snake.push_back( new Segment{3, DIR_NORTH} );
+	snake.push_back( new Segment{5, DIR_NORTH} );
 }
 
 Snake::~Snake() {
@@ -38,9 +38,28 @@ Snake::~Snake() {
 void Snake::move() {
 	assert(snake[snake.size() - 1]->dir == headDir); // make sure that the direction of the head is correct
 	
-	++snake[snake.size() - 1]->length; // increment the length of the head segment
+	snake[snake.size() - 1]->length++; // increment the length of the head segment
 	
-	--snake[0]->length; // decrement the tail segment
+	snake[0]->length--; // decrement the tail segment
+	
+	switch(snake[0]->dir) {
+		case DIR_NORTH:
+			--tail.y;
+		break;
+		
+		case DIR_EAST:
+			++tail.x;
+		break;
+		
+		case DIR_SOUTH:
+			++tail.y;
+		break;
+		
+		case DIR_WEST:
+			--tail.x;
+		break;
+	}
+	
 	if(snake[0]->length == 0) { // if there is no tail segment remove it
 		delete snake[0];
 		snake.erase(snake.begin());
