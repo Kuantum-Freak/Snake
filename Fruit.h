@@ -22,7 +22,6 @@
 class Fruit {
 public:
 	Fruit();
-	~Fruit();
 	
 	void render();
 	
