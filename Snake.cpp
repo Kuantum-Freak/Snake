@@ -75,6 +75,10 @@ void Snake::turn(Direction dir) {
 	headDir = dir;
 }
 
+Coordinate Snake::getHead() {
+	return head;
+}
+
 void Snake::render() {
 	Coordinate currBlock = tail;
 	for(auto s : snake) {
@@ -100,4 +104,6 @@ void Snake::render() {
 			}
 		}
 	}
+	
+	head = currBlock; // update head. I know its hacky but it works
 }
