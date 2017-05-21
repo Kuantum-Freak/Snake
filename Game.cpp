@@ -16,7 +16,12 @@
  */
 #include "info.h"
 
+#include <SDL.h>
+
 #include "main.h"
+#include "Window.h"
+#include "Snake.h"
+#include "Fruit.h"
 
 Game::Game() {
 	window = new Window();
