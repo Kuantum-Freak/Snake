@@ -16,4 +16,31 @@
  */
 #include "info.h"
 
-#include ".\h\main.h"
+#include "main.h"
+
+Game::Game() {
+	
+}
+
+Game::~Game() {
+	
+}
+
+void Game::loop() {
+	SDL_Event event;
+	
+	while(!win()) {
+		while(SDL_PollEvent(&event)) {
+			switch(event.type) {
+				case SDL_QUIT:
+					exit(0);
+				break;
+			}
+		}
+	}
+}
+
+void Game::renderAll() {
+	snake->render();
+	fruit->render();
+}
