@@ -47,6 +47,26 @@ void Game::loop() {
 				case SDL_QUIT:
 					exit(0);
 				break;
+				
+				case SDL_KEYUP: {
+					switch(event.key.keysym.sym) {
+						case SDLK_d:
+							snake->turn(DIR_EAST);
+						break;
+						
+						case SDLK_a:
+							snake->turn(DIR_WEST);
+						break;
+						
+						case SDLK_w:
+							snake->turn(DIR_NORTH);
+						break;
+						
+						case SDLK_s:
+							snake->turn(DIR_SOUTH);
+						break;
+					}
+				} break;
 			}
 		}
 	}
