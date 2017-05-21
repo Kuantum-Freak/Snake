@@ -23,6 +23,9 @@
 #include "main.h"
 #include "Window.h"
 
+const int SCRN_H = 500;
+const int SCRN_W = 500;
+
 Window::Window() {
 	if( NULL ==
 		(window = SDL_CreateWindow(  // Create our Window
