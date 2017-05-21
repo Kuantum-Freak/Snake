@@ -16,3 +16,17 @@
  */
 
 #pragma once
+
+#include "main.h"
+
+class Fruit {
+public:
+	Fruit();
+	~Fruit();
+	
+	void render();
+	
+private:
+	Coordinate loc;
+	
+};
