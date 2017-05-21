@@ -24,11 +24,15 @@
 #include "Game.h"
 
 Snake::Snake() {
-	
+	tail = {MAP_W / 2, MAP_H / 2};
+	headDir = DIR_NORTH;
+	snake.push_back( new Segment{3, DIR_NORTH} );
 }
 
 Snake::~Snake() {
-	
+	for(auto s : snake) {
+		delete s;
+	}
 }
 
 void Snake::move() {
