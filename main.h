@@ -18,12 +18,16 @@
 #ifndef MAIN_H_INCLUDED
 #define MAIN_H_INCLUDED
 
+class Game;
+
 struct Coordinate {
-	int x,
-	int y
+	int x;
+	int y;
 	
 	bool operator==(Coordinate b);
 };
+
+extern Game* gSnakeGame;
 
 int main(int argc, char* argv[]);
 
