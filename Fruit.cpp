@@ -17,3 +17,11 @@
 #include "info.h"
 
 #include "main.h"
+
+Fruit::Fruit() {
+	loc = { rand() % MAP_W, rand() % MAP_H };
+}
+
+void Fruit::render() {
+	renderBlock(loc);
+}
