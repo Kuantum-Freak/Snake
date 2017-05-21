@@ -23,6 +23,8 @@
 #include "Snake.h"
 #include "Fruit.h"
 
+static const int FPS = 45;
+
 Game::Game() {
 	window = new Window();
 	snake = new Snake();
@@ -37,8 +39,12 @@ Game::~Game() {
 
 void Game::loop() {
 	SDL_Event event;
+	uint32_t FPS_Timer;
 	
 	while(!win()) {
+		FPS_Timer = SDL_GetTicks(); // Get the time at the start of the frame
+		
+		snake->move();
 		
 		renderAll();
 		
@@ -69,6 +75,10 @@ void Game::loop() {
 				} break;
 			}
 		}
+		
+		int frameTicks = SDL_GetTicks() - FPS_Timer; // Get time it took to render frame
+		if( frameTicks < 1000/FPS ) // If this was too big
+			SDL_Delay( 1000/FPS - frameTicks ); // Wait remainging time
 	}
 }
 
