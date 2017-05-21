@@ -24,9 +24,14 @@ public:
 	Game();
 	~Game();
 	
-	void renderAll();
 	void loop();
 	
 private:
 	Window* window;
+	
+	Snake* snake;
+	Fruit* fruit;
+	
+	void renderAll();
+	
 };
