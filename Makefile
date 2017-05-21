@@ -26,12 +26,24 @@ L_SDLL = $(GRAPHICS) -LSDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_t
 # ==============================  MACROS  ======================================
 CFLAGS = $(DEBUG) -Wall -std=c++11 -c
 LFLAGS = $(DEBUG) -Wall
-OBJS = $(BIN)/main.o $(BIN)/Game.o $(BIN)/Snake.o $(BIN)/Fruit.o 
+OBJS = $(BIN)/main.o $(BIN)/Game.o $(BIN)/Window.o $(BIN)/Snake.o $(BIN)/Fruit.o 
 
 # ============================ RECEPIES ========================================
 
 $(BIN)/main.o: main.cpp main.h 
 	$(CC) main.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Game.o: Game.cpp Game.h 
+	$(CC) Game.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Window.o: Window.cpp Window.h 
+	$(CC) Window.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Snake.o: Snake.cpp Snake.h 
+	$(CC) Snake.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Fruit.o: Fruit.cpp Fruit.h 
+	$(CC) Fruit.cpp -o $@ $(CFLAGS) $(L_SDLC)
 
 $(BIN)/%.o: %.cpp
 	$(CC) $^ -o $@ $(CFLAGS) $(L_SDLC)
