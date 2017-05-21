@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "main.h"
+struct Coordinate;
 
 class Fruit {
 public:

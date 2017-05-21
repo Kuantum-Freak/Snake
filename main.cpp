@@ -22,10 +22,18 @@
 
 #include <iostream>
 
-#include ".\h\main.h"
+#include "main.h"
+#include "Game.h"
+
+Game* gSnakeGame;
 
 int main(int argc, char* argv[]) {
 	PRINT_LEGAL_TERR;
+	gSnakeGame = new Game();
+	
+	while(true) {
+		gSnakeGame->loop();
+	}
 	
 	return 0;
 }

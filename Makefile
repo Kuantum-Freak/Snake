@@ -20,8 +20,8 @@ RES = windres
 BIN = bin
 
 # ============================  SDL LIBS  ======================================
-L_SDLC = -ISDL/include 
-L_SDLL = $(GRAPHICS) -LSDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_ttf -lSDL2_image
+L_SDLC = -IC:/Compiler/SDL/include/SDL2  
+L_SDLL = $(GRAPHICS) -LC:/Compiler/SDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_ttf -lSDL2_image
 
 # ==============================  MACROS  ======================================
 CFLAGS = $(DEBUG) -Wall -std=c++11 -c

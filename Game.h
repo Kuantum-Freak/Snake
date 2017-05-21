@@ -17,9 +17,13 @@
 
 #pragma once
 
-class Window;
+struct Window;
 class Snake;
 class Fruit;
+struct Coordinate;
+
+extern const int MAP_W;
+extern const int MAP_H;
 
 class Game {
 public:
@@ -27,6 +31,8 @@ public:
 	~Game();
 	
 	void loop();
+	
+	void renderBlock(Coordinate& block);
 	
 private:
 	Window* window;

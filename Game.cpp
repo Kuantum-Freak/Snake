@@ -19,11 +19,14 @@
 #include <SDL.h>
 
 #include "main.h"
+#include "Game.h"
 #include "Window.h"
 #include "Snake.h"
 #include "Fruit.h"
 
 static const int FPS = 45;
+const int MAP_W = 35;
+const int MAP_H = 35;
 
 Game::Game() {
 	window = new Window();
@@ -80,6 +83,10 @@ void Game::loop() {
 		if( frameTicks < 1000/FPS ) // If this was too big
 			SDL_Delay( 1000/FPS - frameTicks ); // Wait remainging time
 	} // RENDER LOOP END
+}
+
+void Game::renderBlock(Coordinate& block) {
+	
 }
 
 void Game::renderAll() {

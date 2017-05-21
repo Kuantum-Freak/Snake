@@ -39,8 +39,15 @@
 
 // =================  MACROS  =================
 // DEBUGGING
-#define LOGL(msg) if(DEBUG) {std::cout << msg << std::endl;}
-#define LOG(msg) if(DEBUG) {std::cout << msg;}
+#ifdef DEBUG
+	#define LOGL(msg) {std::cout << msg << std::endl;}
+	#define LOG(msg) {std::cout << msg;}
+#else
+	#define LOGL(msg)
+	#define LOG(msg)
+#endif
+
+#define EXIT(msg, code) {std::cout << msg << std::endl; exit(code);}
 
 // CLEAR TERMINAL 
 #if defined(__linux__) || defined(linux) || defined(__linux)
@@ -48,5 +55,6 @@
 #elif defined(_WIN32)
 	#define CLEAR_TERMINAL if(DEBUG){system("cls");}
 #endif
+
 
 #endif // INFO_H_INCLUDED

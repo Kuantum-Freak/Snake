@@ -28,7 +28,7 @@ struct Window {
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	
-	const int SCRN_H;
-	const int SCRN_W;
+	const int SCRN_H = 680;
+	const int SCRN_W = 420;
 	
 };

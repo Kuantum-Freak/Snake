@@ -16,12 +16,16 @@
  */
 #include "info.h"
 
+#include <cstdlib>
+
 #include "main.h"
+#include "Fruit.h"
+#include "Game.h"
 
 Fruit::Fruit() {
 	loc = { rand() % MAP_W, rand() % MAP_H };
 }
 
 void Fruit::render() {
-	renderBlock(loc);
+	gSnakeGame->renderBlock(loc);
 }
