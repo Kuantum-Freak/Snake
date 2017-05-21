@@ -19,6 +19,9 @@
 
 #include <SDL.h>
 
+extern const int SCRN_H;
+extern const int SCRN_W;
+
 struct Window {
 	Window();
 	~Window();
@@ -27,8 +30,5 @@ struct Window {
 	
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	
-	const int SCRN_H = 680;
-	const int SCRN_W = 420;
 	
 };

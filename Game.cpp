@@ -25,8 +25,8 @@
 #include "Fruit.h"
 
 static const int FPS = 45;
-const int MAP_W = 35;
-const int MAP_H = 35;
+const int MAP_W = 20;
+const int MAP_H = 20;
 
 Game::Game() {
 	window = new Window();
@@ -86,12 +86,25 @@ void Game::loop() {
 }
 
 void Game::renderBlock(Coordinate& block) {
+	SDL_SetRenderDrawColor(window->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	
+	SDL_Rect renBlock = {
+		block.x * (SCRN_W/MAP_W), 
+		block.y * (SCRN_H/MAP_H),
+		SCRN_W/MAP_W, 
+		SCRN_H/MAP_H
+	};
+	
+	SDL_RenderFillRect(window->renderer, &renBlock);
 }
 
 void Game::renderAll() {
+	window->clear();
+	
 	snake->render();
 	fruit->render();
+	
+	SDL_RenderPresent(window->renderer);
 }
 
 bool Game::win() {
