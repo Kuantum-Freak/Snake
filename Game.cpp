@@ -71,15 +71,15 @@ void Game::loop() {
 						case SDLK_s:
 							snake->turn(DIR_SOUTH);
 						break;
-					}
+					} // KEY UP SWITCH END
 				} break;
-			}
-		}
+			} // EVENT SWITCH END
+		} // EVENT LOOP END
 		
 		int frameTicks = SDL_GetTicks() - FPS_Timer; // Get time it took to render frame
 		if( frameTicks < 1000/FPS ) // If this was too big
 			SDL_Delay( 1000/FPS - frameTicks ); // Wait remainging time
-	}
+	} // RENDER LOOP END
 }
 
 void Game::renderAll() {
