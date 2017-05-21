@@ -17,3 +17,16 @@
 
 #pragma once
 
+class Window;
+
+class Game {
+public:
+	Game();
+	~Game();
+	
+	void renderAll();
+	void loop();
+	
+private:
+	Window* window;
+};
