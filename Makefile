@@ -15,56 +15,61 @@
 # ==============================================================================
 .DEFAULT_GOAL := all
 # ==========================  CONST MACROS  ====================================
-CC = "C:\Compiler\MinGW-w64\mingw32\bin\g++.exe"
-7Z = "C:\Program Files (Portable)\7-Zip\7z.exe"
-RES = "C:\Compiler\MinGW-w64\mingw32\bin\windres.exe"
-OBJDIR = .\obj
-BINDIR = .\bin
-DATDIR = .\dat
-
-DEBUG = -g -DDEBUG=true
+CC = g++
+RES = windres
+BIN = bin
 
 # ============================  SDL LIBS  ======================================
-GRAPHICS = -w -Wl,-subsystem,windows
-# Standard SDL libs
-L_SDLC = -IC:\Compiler\SDL\include\SDL2 
-L_SDLL = -LC:\Compiler\SDL\lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer  -lSDL2_ttf  -lSDL2_image
+L_SDLC = -IC:/Compiler/SDL/include/SDL2  
+L_SDLL = $(GRAPHICS) -LC:/Compiler/SDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_ttf -lSDL2_image
 
 # ==============================  MACROS  ======================================
-CFLAGS = $(DEBUG) -Wall -std=c++17 -c
+CFLAGS = $(DEBUG) -Wall -std=c++11 -c
 LFLAGS = $(DEBUG) -Wall
-OBJ = $(OBJDIR)\main.o $(OBJDIR)\res.o
+OBJS = $(BIN)/main.o $(BIN)/Game.o $(BIN)/Window.o $(BIN)/Snake.o $(BIN)/Fruit.o 
 
 # ============================ RECEPIES ========================================
 
-$(OBJDIR)\main.o: .\main.cpp
-	$(CC) .\$^ -o .\$@ $(CFLAGS)
-
-$(OBJDIR)\%.o: .\%.cpp
-	$(CC) .\$^ -o .\$@ $(CFLAGS) 
-
-$(OBJDIR)\res.o: .\res.rc .\info.h
-	$(RES) .\res.rc  .\$@
+$(BIN)/main.o: main.cpp main.h 
+	$(CC) main.cpp -o $@ $(CFLAGS) $(L_SDLC)
 	
-# Link	
-$(BINDIR)\main.exe: $(OBJ)
-	$(CC) .\$^ -o .\$@ $(LFLAGS)
+$(BIN)/Game.o: Game.cpp Game.h 
+	$(CC) Game.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Window.o: Window.cpp Window.h 
+	$(CC) Window.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Snake.o: Snake.cpp Snake.h 
+	$(CC) Snake.cpp -o $@ $(CFLAGS) $(L_SDLC)
+	
+$(BIN)/Fruit.o: Fruit.cpp Fruit.h 
+	$(CC) Fruit.cpp -o $@ $(CFLAGS) $(L_SDLC)
+
+$(BIN)/%.o: %.cpp
+	$(CC) $^ -o $@ $(CFLAGS) $(L_SDLC)
+
+$(BIN)/res.o: res.rc info.h
+	$(RES) res.rc  $@
+	
+# Link
+.PHONY: debug	
+debug: DEBUG = -g -DDEBUG
+debug: $(OBJS)
+	$(CC) $^ -o $(BIN)/main.exe $(LFLAGS) $(L_SDLL)
 
 # ============================= PHONY RECEPIES =================================
 .PHONY: all
-all: clean $(OBJ)
-	$(CC) $(OBJ) $(LFLAGS) $(LSDLL) $(LSDLIL) $(LSDLTL) -o $(BINDIR)\final.exe
+all: clean $(OBJS)
+	$(CC) $(OBJS) $(LFLAGS) $(L_SDLL) -o $(BIN)/final.exe
 
-.PHONY: link
-link:
-	$(CC) .\$^ $(LFLAGS) $(LSDLL) $(LSDLIL) $(LSDLTL) -o $(BINDIR)\main.exe	
+.PHONY: install
+install: DEBUG = -O2 -s -DNDEBUG
+install: GRAPHICS = -w -Wl,-subsystem,windows
+install: all Runner.cpp $(BIN)/res.o
+	$(CC) Runner.cpp $(BIN)/res.o -static -o Play.exe
+	Play.exe
 	
 .PHONY: clean
 clean:
-	del $(OBJDIR)\*.o
-	del $(BINDIR)\*.exe
-	del $(DATDIR)\*.dat
-
-.PHONY: archive
-archive:
-	$(7Z) a -tzip .\arc\"%DATE:~-4%%DATE:~4,2%%DATE:~7,2%".zip * -xr!obj -xr!bin -xr!arc
+	del $(BIN)\*.o
+	del $(BIN)\*.exe

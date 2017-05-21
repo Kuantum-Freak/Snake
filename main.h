@@ -14,26 +14,21 @@
  * @description 	
  * =============================================================================
  */
-#include "info.h"
-#define PRINT_LEGAL_TERR std::cout << '\n' << R_PROJNAME << " v" << R_PVERSION \
-		<< " by " << R_AUTHOR << '\n' << R_COPYRIGHT << '\n' << R_COMMENTS \
-		<< "\n\n\n" // Legal and Informational
 
+#ifndef MAIN_H_INCLUDED
+#define MAIN_H_INCLUDED
 
-#include <iostream>
+class Game;
 
-#include "main.h"
-#include "Game.h"
-
-Game* gSnakeGame;
-
-int main(int argc, char* argv[]) {
-	PRINT_LEGAL_TERR;
-	gSnakeGame = new Game();
+struct Coordinate {
+	int x;
+	int y;
 	
-	while(true) {
-		gSnakeGame->loop();
-	}
-	
-	return 0;
-}
+	bool operator==(Coordinate b);
+};
+
+extern Game* gSnakeGame;
+
+int main(int argc, char* argv[]);
+
+#endif // MAIN_H_INCLUDED

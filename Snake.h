@@ -14,26 +14,41 @@
  * @description 	
  * =============================================================================
  */
-#include "info.h"
-#define PRINT_LEGAL_TERR std::cout << '\n' << R_PROJNAME << " v" << R_PVERSION \
-		<< " by " << R_AUTHOR << '\n' << R_COPYRIGHT << '\n' << R_COMMENTS \
-		<< "\n\n\n" // Legal and Informational
 
+#pragma once
 
-#include <iostream>
+#include <deque>
 
 #include "main.h"
-#include "Game.h"
 
-Game* gSnakeGame;
+enum Direction {
+	DIR_NORTH,
+	DIR_EAST,
+	DIR_SOUTH,
+	DIR_WEST
+};
 
-int main(int argc, char* argv[]) {
-	PRINT_LEGAL_TERR;
-	gSnakeGame = new Game();
+class Snake {
+public:
+	Snake();
+	~Snake();
 	
-	while(true) {
-		gSnakeGame->loop();
-	}
+	void move();
+	void eat();
+	void turn(Direction dir);
 	
-	return 0;
-}
+	void render();
+	
+	static Direction getComplement(Direction dir);
+	
+private:
+	struct Segment {
+		int length;
+		Direction dir;
+	};
+	
+	Direction headDir;
+	Coordinate tail;
+	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
+
+};

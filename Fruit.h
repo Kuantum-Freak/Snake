@@ -15,10 +15,17 @@
  * =============================================================================
  */
 
-#ifndef MAIN_H_INCLUDED
-#define MAIN_H_INCLUDED
+#pragma once
 
+struct Coordinate;
 
-int main(int argc, char* argv[]);
-
-#endif // MAIN_H_INCLUDED
+class Fruit {
+public:
+	Fruit();
+	
+	void render();
+	
+private:
+	Coordinate loc;
+	
+};

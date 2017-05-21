@@ -14,26 +14,33 @@
  * @description 	
  * =============================================================================
  */
-#include "info.h"
-#define PRINT_LEGAL_TERR std::cout << '\n' << R_PROJNAME << " v" << R_PVERSION \
-		<< " by " << R_AUTHOR << '\n' << R_COPYRIGHT << '\n' << R_COMMENTS \
-		<< "\n\n\n" // Legal and Informational
 
+#pragma once
 
-#include <iostream>
+struct Window;
+class Snake;
+class Fruit;
+struct Coordinate;
 
-#include "main.h"
-#include "Game.h"
+extern const int MAP_W;
+extern const int MAP_H;
 
-Game* gSnakeGame;
-
-int main(int argc, char* argv[]) {
-	PRINT_LEGAL_TERR;
-	gSnakeGame = new Game();
+class Game {
+public:
+	Game();
+	~Game();
 	
-	while(true) {
-		gSnakeGame->loop();
-	}
+	void loop();
 	
-	return 0;
-}
+	void renderBlock(Coordinate& block);
+	
+private:
+	Window* window;
+	
+	Snake* snake;
+	Fruit* fruit;
+	
+	void renderAll();
+	bool win();
+	
+};

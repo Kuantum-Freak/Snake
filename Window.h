@@ -14,26 +14,21 @@
  * @description 	
  * =============================================================================
  */
-#include "info.h"
-#define PRINT_LEGAL_TERR std::cout << '\n' << R_PROJNAME << " v" << R_PVERSION \
-		<< " by " << R_AUTHOR << '\n' << R_COPYRIGHT << '\n' << R_COMMENTS \
-		<< "\n\n\n" // Legal and Informational
 
+#pragma once
 
-#include <iostream>
+#include <SDL.h>
 
-#include "main.h"
-#include "Game.h"
+extern const int SCRN_H;
+extern const int SCRN_W;
 
-Game* gSnakeGame;
-
-int main(int argc, char* argv[]) {
-	PRINT_LEGAL_TERR;
-	gSnakeGame = new Game();
+struct Window {
+	Window();
+	~Window();
 	
-	while(true) {
-		gSnakeGame->loop();
-	}
+	void clear();
 	
-	return 0;
-}
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	
+};

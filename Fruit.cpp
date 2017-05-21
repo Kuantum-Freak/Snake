@@ -15,25 +15,17 @@
  * =============================================================================
  */
 #include "info.h"
-#define PRINT_LEGAL_TERR std::cout << '\n' << R_PROJNAME << " v" << R_PVERSION \
-		<< " by " << R_AUTHOR << '\n' << R_COPYRIGHT << '\n' << R_COMMENTS \
-		<< "\n\n\n" // Legal and Informational
 
-
-#include <iostream>
+#include <cstdlib>
 
 #include "main.h"
+#include "Fruit.h"
 #include "Game.h"
 
-Game* gSnakeGame;
+Fruit::Fruit() {
+	loc = { rand() % MAP_W, rand() % MAP_H };
+}
 
-int main(int argc, char* argv[]) {
-	PRINT_LEGAL_TERR;
-	gSnakeGame = new Game();
-	
-	while(true) {
-		gSnakeGame->loop();
-	}
-	
-	return 0;
+void Fruit::render() {
+	gSnakeGame->renderBlock(loc);
 }
