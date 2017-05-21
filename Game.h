@@ -18,6 +18,8 @@
 #pragma once
 
 class Window;
+class Snake;
+class Fruit;
 
 class Game {
 public:
@@ -33,5 +35,6 @@ private:
 	Fruit* fruit;
 	
 	void renderAll();
+	bool win();
 	
 };

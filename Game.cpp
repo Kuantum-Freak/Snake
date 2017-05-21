@@ -30,6 +30,9 @@ void Game::loop() {
 	SDL_Event event;
 	
 	while(!win()) {
+		
+		renderAll();
+		
 		while(SDL_PollEvent(&event)) {
 			switch(event.type) {
 				case SDL_QUIT:
@@ -43,4 +46,8 @@ void Game::loop() {
 void Game::renderAll() {
 	snake->render();
 	fruit->render();
+}
+
+bool Game::win() {
+	return false;
 }
