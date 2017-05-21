@@ -19,18 +19,16 @@
 
 #include <SDL.h>
 
-extern const int SCRN_H;
-extern const int SCRN_W;
-
-class Window {
-public:
+struct Window {
 	Window();
 	~Window();
 	
-private:
+	void clear();
+	
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	
-	void clear();
+	const int SCRN_H;
+	const int SCRN_W;
 	
 };
