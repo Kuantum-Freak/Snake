@@ -43,14 +43,23 @@ public:
 	static Direction getComplement(Direction dir);
 	
 private:
-	struct Segment {
-		int length;
-		Direction dir;
-	};
+	class SnakeBody {
+	public:
+		SnakeBody();
+		~SnakeBody();
+		
+		void push(Direction dir);
+		void pop();
+		
+	private:
+		struct Segment {
+			Coordinate c;
+			Direction dir;
+		};
+		
+		std::deque<Segment*> body; // deque b.c we will need to change the tail node often
+		
+	} snake;
 	
-	Direction headDir;
-	Coordinate tail;
-	Coordinate head;
-	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
-
+	Direction currDir;
 };
