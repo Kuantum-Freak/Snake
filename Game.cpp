@@ -24,7 +24,7 @@
 #include "Snake.h"
 #include "Fruit.h"
 
-static const int FPS = 5;
+static const int FPS = 45;
 const int MAP_W = 50;
 const int MAP_H = 50;
 
@@ -43,18 +43,22 @@ Game::~Game() {
 void Game::loop() {
 	SDL_Event event;
 	uint32_t FPS_Timer;
+	unsigned long long moveCounter = 0;
 	
 	while(!win()) {
 		FPS_Timer = SDL_GetTicks(); // Get the time at the start of the frame
+		moveCounter++;
 		
-		snake->move();
+		if(moveCounter % 7 == 0)
+			snake->move();
+		
+		renderAll();
+		
 		if(snake->getHead() == fruit->getLocation()) {
 			snake->eat();
 			delete fruit;
 			fruit = new Fruit();
 		}
-		
-		renderAll();
 		
 		while(SDL_PollEvent(&event)) {
 			switch(event.type) {
