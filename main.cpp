@@ -21,6 +21,7 @@
 
 
 #include <iostream>
+#include <ctime>
 
 #include "main.h"
 #include "Game.h"
@@ -29,6 +30,8 @@ Game* gSnakeGame;
 
 int main(int argc, char* argv[]) {
 	PRINT_LEGAL_TERR;
+	srand(time(0));
+	
 	gSnakeGame = new Game();
 	
 	while(true) {
