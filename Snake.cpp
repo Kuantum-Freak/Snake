@@ -67,7 +67,7 @@ void Snake::move() {
 }
 
 void Snake::eat() {
-	snake[0]->length++;
+	snake[snake.size() - 1]->length++;
 }
 
 void Snake::turn(Direction dir) {
