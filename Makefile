@@ -30,19 +30,19 @@ OBJS = $(BIN)/main.o $(BIN)/Game.o $(BIN)/Window.o $(BIN)/Snake.o $(BIN)/Fruit.o
 
 # ============================ RECEPIES ========================================
 
-$(BIN)/main.o: main.cpp main.h 
+$(BIN)/main.o: main.cpp main.h Game.h
 	$(CC) main.cpp -o $@ $(CFLAGS) $(L_SDLC)
 	
-$(BIN)/Game.o: Game.cpp Game.h 
+$(BIN)/Game.o: Game.cpp Game.h main.h Window.h Snake.h Fruit.h
 	$(CC) Game.cpp -o $@ $(CFLAGS) $(L_SDLC)
 	
-$(BIN)/Window.o: Window.cpp Window.h 
+$(BIN)/Window.o: Window.cpp Window.h main.h 
 	$(CC) Window.cpp -o $@ $(CFLAGS) $(L_SDLC)
 	
-$(BIN)/Snake.o: Snake.cpp Snake.h 
+$(BIN)/Snake.o: Snake.cpp Snake.h main.h Game.h
 	$(CC) Snake.cpp -o $@ $(CFLAGS) $(L_SDLC)
 	
-$(BIN)/Fruit.o: Fruit.cpp Fruit.h 
+$(BIN)/Fruit.o: Fruit.cpp Fruit.h main.h Game.h
 	$(CC) Fruit.cpp -o $@ $(CFLAGS) $(L_SDLC)
 
 $(BIN)/%.o: %.cpp
