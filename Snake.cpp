@@ -44,19 +44,19 @@ void Snake::move() {
 	
 	switch(snake[0]->dir) {
 		case DIR_NORTH:
-			--tail.y;
+			tail.y--;
 		break;
 		
 		case DIR_EAST:
-			++tail.x;
+			tail.x++;
 		break;
 		
 		case DIR_SOUTH:
-			++tail.y;
+			tail.y++;
 		break;
 		
 		case DIR_WEST:
-			--tail.x;
+			tail.x--;
 		break;
 	}
 	
