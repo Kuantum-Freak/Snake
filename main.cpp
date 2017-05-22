@@ -37,3 +37,7 @@ int main(int argc, char* argv[]) {
 	
 	return 0;
 }
+
+bool Coordinate::operator==(Coordinate b) {
+	return b.x == x && b.y == y;
+}
