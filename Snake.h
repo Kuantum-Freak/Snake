@@ -36,6 +36,7 @@ public:
 	void move();
 	void eat();
 	void turn(Direction dir);
+	Coordinate getHead();
 	
 	void render();
 	
@@ -49,6 +50,7 @@ private:
 	
 	Direction headDir;
 	Coordinate tail;
+	Coordinate head;
 	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
 
 };

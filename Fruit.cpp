@@ -29,3 +29,7 @@ Fruit::Fruit() {
 void Fruit::render() {
 	gSnakeGame->renderBlock(loc);
 }
+
+Coordinate Fruit::getLocation() {
+	return loc;
+}

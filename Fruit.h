@@ -24,6 +24,7 @@ public:
 	Fruit();
 	
 	void render();
+	Coordinate getLocation();
 	
 private:
 	Coordinate loc;

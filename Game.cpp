@@ -48,6 +48,11 @@ void Game::loop() {
 		FPS_Timer = SDL_GetTicks(); // Get the time at the start of the frame
 		
 		snake->move();
+		if(snake->getHead() == fruit->getLocation()) {
+			snake->eat();
+			delete fruit;
+			fruit = new Fruit();
+		}
 		
 		renderAll();
 		

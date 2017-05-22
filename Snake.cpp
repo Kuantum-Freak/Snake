@@ -67,12 +67,16 @@ void Snake::move() {
 }
 
 void Snake::eat() {
-	
+	snake[0]->length++;
 }
 
 void Snake::turn(Direction dir) {
 	snake.push_back(new Segment{0, dir});
 	headDir = dir;
+}
+
+Coordinate Snake::getHead() {
+	return head;
 }
 
 void Snake::render() {
@@ -100,4 +104,6 @@ void Snake::render() {
 			}
 		}
 	}
+	
+	head = currBlock; // update head. I know its hacky but it works
 }
