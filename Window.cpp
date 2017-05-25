@@ -23,8 +23,8 @@
 #include "main.h"
 #include "Window.h"
 
-const int SCRN_H = 500;
-const int SCRN_W = 500;
+const int SCRN_H = 600;
+const int SCRN_W = 600;
 
 Window::Window() {
 	if( NULL ==
