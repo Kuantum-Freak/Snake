@@ -15,8 +15,7 @@
  ** =============================================================================
  **/
 
-#ifndef INFO_H_INCLUDED
-#define INFO_H_INCLUDED
+#pragma once
 
 // =================  PROGRAM  INFO  =================
 #define R_PVERSION	       /* Version Number */ "1.0.0"
@@ -55,6 +54,3 @@
 #elif defined(_WIN32)
 	#define CLEAR_TERMINAL if(DEBUG){system("cls");}
 #endif
-
-
-#endif // INFO_H_INCLUDED

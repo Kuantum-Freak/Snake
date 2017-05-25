@@ -15,8 +15,7 @@
  * =============================================================================
  */
 
-#ifndef MAIN_H_INCLUDED
-#define MAIN_H_INCLUDED
+#pragma once
 
 // Forward Declaration
 class Game;
@@ -35,5 +34,3 @@ struct Coordinate {
 extern Game* gSnakeGame; ///< The Snake Game
 
 int main(int argc, char* argv[]); ///< PRGM Entry Point
-
-#endif // MAIN_H_INCLUDED
