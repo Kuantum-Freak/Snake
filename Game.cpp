@@ -25,8 +25,8 @@
 #include "Fruit.h"
 
 static const int FPS = 45;
-const int MAP_W = 50;
-const int MAP_H = 50;
+const int MAP_W = 30;
+const int MAP_H = 30;
 
 Game::Game() {
 	window = new Window();
