@@ -33,6 +33,7 @@ public:
 	void loop();
 	
 	void renderBlock(Coordinate& block);
+	static bool inMap(const Coordinate& c);
 	
 private:
 	Window* window;

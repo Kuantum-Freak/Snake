@@ -85,7 +85,9 @@ void Snake::SnakeBody::push(Direction dir) {
 	}
 	
 	/// @todo Check if we are edge of map
-	
+	if(!Game::inMap(next))
+		exit(0);
+		
 	/// @todo Check if we have eaten ourself or not
 	
 	body.push_back( new Segment{next, dir} );
