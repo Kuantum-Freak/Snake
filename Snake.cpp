@@ -53,7 +53,7 @@ void Snake::render() {
 Snake::SnakeBody::SnakeBody() {
 	Coordinate head = {MAP_W / 2, MAP_H / 2};
 	for(int i = 0; i < 4; ++i) {
-		body.push_back(new Segment{head, DIR_NORTH});
+		body.push_front(new Segment{head, DIR_NORTH});
 		head.y++;
 	}
 }
@@ -83,6 +83,15 @@ void Snake::SnakeBody::push(Direction dir) {
 			next.x--;
 		break;
 	}
+	
+	/// @todo Check if we are edge of map
+	if(!Game::inMap(next))
+		exit(0);
+		
+	/// @todo Check if we have eaten ourself or not
+	for(size_t i = 0; i < body.size(); ++i)
+		if(body[i]->c == next)
+			exit(0);
 	
 	body.push_back( new Segment{next, dir} );
 }

@@ -119,3 +119,7 @@ void Game::renderAll() {
 bool Game::win() {
 	return false;
 }
+
+bool Game::inMap(const Coordinate& c) {
+	return c.x >= 0 && c.x < MAP_W && c.y >= 0 && c.y < MAP_H;
+}
