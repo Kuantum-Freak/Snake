@@ -24,7 +24,7 @@
 #include "Game.h"
 
 Snake::Snake() {
-
+	currDir = DIR_NORTH;
 }
 
 Snake::~Snake() {
@@ -45,7 +45,7 @@ void Snake::turn(Direction dir) {
 }
 
 Coordinate Snake::head() {
-	return snake[0]->c;
+	return snake[snake.size() - 1]->c;
 }
 
 void Snake::render() {
@@ -69,6 +69,25 @@ Snake::SnakeBody::~SnakeBody() {
 
 void Snake::SnakeBody::push(Direction dir) {
 	Coordinate next = body[body.size() - 1]->c;
+	
+	switch(dir) {
+		case DIR_NORTH:
+			next.y--;
+		break;
+		
+		case DIR_EAST:
+			next.x++;
+		break;
+		
+		case DIR_SOUTH:
+			next.y++;
+		break;
+		
+		case DIR_WEST:
+			next.x--;
+		break;
+	}
+	
 	body.push_back( new Segment{next, dir} );
 }
 
