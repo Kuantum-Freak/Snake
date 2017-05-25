@@ -36,21 +36,34 @@ public:
 	void move();
 	void eat();
 	void turn(Direction dir);
-	Coordinate getHead();
+	Coordinate head();
 	
 	void render();
 	
 	static Direction getComplement(Direction dir);
 	
 private:
-	struct Segment {
-		int length;
-		Direction dir;
-	};
+	class SnakeBody {
+	public:
+		struct Segment {
+			Coordinate c;
+			Direction dir;
+		};
 	
-	Direction headDir;
-	Coordinate tail;
-	Coordinate head;
-	std::deque<Segment*> snake; // deque b.c we will need to change the tail node often
-
+		SnakeBody();
+		~SnakeBody();
+		
+		void push(Direction dir);
+		void pop();
+		
+		size_t size();
+		
+		Segment* operator[](size_t idx);
+		
+	private:		
+		std::deque<Segment*> body; // deque b.c we will need to change the tail node often
+		
+	} snake;
+	
+	Direction currDir;
 };
