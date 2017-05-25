@@ -24,16 +24,16 @@
 #include "Game.h"
 
 Snake::Snake() {
-	currDir = DIR_NORTH;
+	currDir = DIR_NORTH; // set our default direction
 }
 
 void Snake::move() {
-	snake.push(currDir);
-	snake.pop();
+	snake.push(currDir); // add a block to the front in the direction we are going
+	snake.pop(); // remove a block from the tail
 }
 
 void Snake::eat() {
-	snake.push(currDir);
+	snake.push(currDir); // add a block, but dont remove one, effectively incrementsing size by 1
 }
 
 void Snake::turn(Direction dir) {
@@ -41,32 +41,32 @@ void Snake::turn(Direction dir) {
 }
 
 Coordinate Snake::head() {
-	return snake[snake.size() - 1]->c;
+	return snake[snake.size() - 1]->c; // the end of the snake is the head
 }
 
 void Snake::render() {
-	for(size_t i = 0; i < snake.size(); ++i) {
-		gSnakeGame->renderBlock(snake[i]->c);
-	}
+	for(size_t i = 0; i < snake.size(); ++i)
+		gSnakeGame->renderBlock(snake[i]->c); // render each block of the snake
 }
 
 Snake::SnakeBody::SnakeBody() {
-	Coordinate head = {MAP_W / 2, MAP_H / 2};
+	Coordinate head = {MAP_W / 2, MAP_H / 2}; // place head at the middle of the map
+	
 	for(int i = 0; i < 4; ++i) {
-		body.push_front(new Segment{head, DIR_NORTH});
+		body.push_front(new Segment{head, DIR_NORTH}); // create a snake of size 4
 		head.y++;
 	}
 }
 
 Snake::SnakeBody::~SnakeBody() {
 	for(auto s : body)
-		delete s;
+		delete s; // delete the segments
 }
 
 void Snake::SnakeBody::push(Direction dir) {
-	Coordinate next = body[body.size() - 1]->c;
+	Coordinate next = body[body.size() - 1]->c; // get the head location
 	
-	switch(dir) {
+	switch(dir) { // add one to the head depending on the direction
 		case DIR_NORTH:
 			next.y--;
 		break;
@@ -83,22 +83,21 @@ void Snake::SnakeBody::push(Direction dir) {
 			next.x--;
 		break;
 	}
+	/// @todo Check if user is going back towards itself
 	
-	/// @todo Check if we are edge of map
-	if(!Game::inMap(next))
+	if(!Game::inMap(next)) // Check if we are edge of map
 		exit(0);
 		
-	/// @todo Check if we have eaten ourself or not
-	for(size_t i = 0; i < body.size(); ++i)
+	for(size_t i = 0; i < body.size(); ++i) // Check if we have eaten ourself or not
 		if(body[i]->c == next)
 			exit(0);
 	
-	body.push_back( new Segment{next, dir} );
+	body.push_back( new Segment{next, dir} ); // add the new segment to our body
 }
 
 void Snake::SnakeBody::pop() {
-	delete body[0];
-	body.pop_front();
+	delete body[0]; // delete the tail
+	body.pop_front(); // remove it from the body
 }
 
 size_t Snake::SnakeBody::size() {

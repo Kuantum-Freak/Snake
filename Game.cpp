@@ -29,12 +29,14 @@ const int MAP_W = 30;
 const int MAP_H = 30;
 
 Game::Game() {
+	// create our window, snake and a randomly placed fruit
 	window = new Window();
 	snake = new Snake();
 	fruit = new Fruit();
 }
 
 Game::~Game() {
+	// Delete all of the vars
 	delete window;
 	delete snake;
 	delete fruit;
@@ -49,11 +51,13 @@ void Game::loop() {
 		FPS_Timer = SDL_GetTicks(); // Get the time at the start of the frame
 		moveCounter++;
 		
-		if(moveCounter % 7 == 0)
+		if(moveCounter % 7 == 0) // only move the snake every 7th frame
 			snake->move();
 		
 		renderAll();
 		
+		// if the snake's head is in the same location as a fruit
+		// then make our snake longer and create a new fruit
 		if(snake->head() == fruit->getLocation()) {
 			snake->eat();
 			delete fruit;
@@ -67,7 +71,7 @@ void Game::loop() {
 				break;
 				
 				case SDL_KEYUP: {
-					switch(event.key.keysym.sym) {
+					switch(event.key.keysym.sym) { // turn the snake accordingly
 						case SDLK_d:
 							snake->turn(DIR_EAST);
 						break;
@@ -95,16 +99,16 @@ void Game::loop() {
 }
 
 void Game::renderBlock(Coordinate& block) {
-	SDL_SetRenderDrawColor(window->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(window->renderer, 0xFF, 0xFF, 0xFF, 0xFF); // WHITE
 	
-	SDL_Rect renBlock = {
+	SDL_Rect renBlock = { // location of the block to render
 		block.x * (SCRN_W/MAP_W), 
 		block.y * (SCRN_H/MAP_H),
 		SCRN_W/MAP_W, 
 		SCRN_H/MAP_H
 	};
 	
-	SDL_RenderFillRect(window->renderer, &renBlock);
+	SDL_RenderFillRect(window->renderer, &renBlock); // render it
 }
 
 void Game::renderAll() {
@@ -116,10 +120,13 @@ void Game::renderAll() {
 	SDL_RenderPresent(window->renderer);
 }
 
-bool Game::win() {
+bool Game::win() { /// @todo depreciated, need to remove
 	return false;
 }
 
 bool Game::inMap(const Coordinate& c) {
-	return c.x >= 0 && c.x < MAP_W && c.y >= 0 && c.y < MAP_H;
+	return    c.x >= 0 
+		   && c.x < MAP_W
+		   && c.y >= 0
+		   && c.y < MAP_H;
 }

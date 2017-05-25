@@ -29,13 +29,13 @@
 Game* gSnakeGame;
 
 int main(int argc, char* argv[]) {
-	PRINT_LEGAL_TERR;
-	srand(time(0));
+	PRINT_LEGAL_TERR; // print legal
+	srand(time(0)); // seed random generator
 	
-	gSnakeGame = new Game();
+	gSnakeGame = new Game(); // create a new game
 	
 	while(true) {
-		gSnakeGame->loop();
+		gSnakeGame->loop(); // loop the game
 	}
 	
 	return 0;

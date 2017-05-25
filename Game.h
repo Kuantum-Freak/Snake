@@ -17,31 +17,38 @@
 
 #pragma once
 
+// Forward Declarations
 struct Window;
 class Snake;
 class Fruit;
 struct Coordinate;
 
-extern const int MAP_W;
-extern const int MAP_H;
+extern const int MAP_W; ///< The Map Width
+extern const int MAP_H; ///< The Map Height
 
+/// @brief Stores the information on our game and various functions utilized in the game
 class Game {
 public:
 	Game();
 	~Game();
 	
-	void loop();
+	void loop(); ///< The main game loop
 	
+	/// @brief Renders a white block on the screen
+	/// @param block The cordinate of the block to render
 	void renderBlock(Coordinate& block);
+	
+	/// @brief Checks if the supplied Coordinate is in the map
+	/// @return bool If the Coordinate is in the map or not
 	static bool inMap(const Coordinate& c);
 	
 private:
-	Window* window;
+	Window* window; ///< The Window for our game
 	
-	Snake* snake;
-	Fruit* fruit;
+	Snake* snake; ///< The Snake
+	Fruit* fruit; ///< The Fruit
 	
-	void renderAll();
-	bool win();
+	void renderAll(); ///< Renders all the items on the screen
+	bool win(); ///< DEPRECIATED
 	
 };
