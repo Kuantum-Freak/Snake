@@ -68,7 +68,7 @@ Snake::SnakeBody::~SnakeBody() {
 }
 
 void Snake::SnakeBody::push(Direction dir) {
-	Coordinate next = (*body.end())->c;
+	Coordinate next = body[body.size() - 1]->c;
 	body.push_back( new Segment{next, dir} );
 }
 
