@@ -24,86 +24,62 @@
 #include "Game.h"
 
 Snake::Snake() {
-	tail = {MAP_W / 2, MAP_H / 2};
-	headDir = DIR_NORTH;
-	snake.push_back( new Segment{5, DIR_NORTH} );
+
 }
 
 Snake::~Snake() {
-	for(auto s : snake) {
-		delete s;
-	}
+	
 }
 
 void Snake::move() {
-	assert(snake[snake.size() - 1]->dir == headDir); // make sure that the direction of the head is correct
-	
-	snake[snake.size() - 1]->length++; // increment the length of the head segment
-	
-	snake[0]->length--; // decrement the tail segment
-	
-	switch(snake[0]->dir) {
-		case DIR_NORTH:
-			tail.y--;
-		break;
-		
-		case DIR_EAST:
-			tail.x++;
-		break;
-		
-		case DIR_SOUTH:
-			tail.y++;
-		break;
-		
-		case DIR_WEST:
-			tail.x--;
-		break;
-	}
-	
-	if(snake[0]->length == 0) { // if there is no tail segment remove it
-		delete snake[0];
-		snake.erase(snake.begin());
-	}
+	snake.push(currDir);
+	snake.pop();
 }
 
 void Snake::eat() {
-	snake[snake.size() - 1]->length++;
+	snake.push(currDir);
 }
 
 void Snake::turn(Direction dir) {
-	snake.push_back(new Segment{0, dir});
-	headDir = dir;
+	currDir = dir;
 }
 
-Coordinate Snake::getHead() {
-	return head;
+Coordinate Snake::head() {
+	return snake[0]->c;
 }
 
 void Snake::render() {
-	Coordinate currBlock = tail;
-	for(auto s : snake) {
-		for(int i = 0; i < s->length; ++i) {
-			gSnakeGame->renderBlock(currBlock);
-			
-			switch(s->dir) {
-				case DIR_NORTH:
-					--currBlock.y;
-				break;
-				
-				case DIR_EAST:
-					++currBlock.x;
-				break;
-				
-				case DIR_SOUTH:
-					++currBlock.y;
-				break;
-				
-				case DIR_WEST:
-					--currBlock.x;
-				break;
-			}
-		}
+	for(size_t i = 0; i < snake.size(); ++i) {
+		gSnakeGame->renderBlock(snake[i]->c);
 	}
-	
-	head = currBlock; // update head. I know its hacky but it works
+}
+
+Snake::SnakeBody::SnakeBody() {
+	Coordinate head = {MAP_W / 2, MAP_H / 2};
+	for(int i = 0; i < 4; ++i) {
+		body.push_back(new Segment{head, DIR_NORTH});
+		head.y++;
+	}
+}
+
+Snake::SnakeBody::~SnakeBody() {
+	for(auto s : body)
+		delete s;
+}
+
+void Snake::SnakeBody::push(Direction dir) {
+	Coordinate next = (*body.end())->c;
+	body.push_back( new Segment{next, dir} );
+}
+
+void Snake::SnakeBody::pop() {
+	body.pop_front();
+}
+
+size_t Snake::SnakeBody::size() {
+	return body.size();
+}
+
+Snake::SnakeBody::Segment* Snake::SnakeBody::operator[](size_t idx) {
+	return body[idx];
 }
