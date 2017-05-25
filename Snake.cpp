@@ -73,6 +73,7 @@ void Snake::SnakeBody::push(Direction dir) {
 }
 
 void Snake::SnakeBody::pop() {
+	delete body[0];
 	body.pop_front();
 }
 
