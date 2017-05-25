@@ -27,10 +27,6 @@ Snake::Snake() {
 	currDir = DIR_NORTH;
 }
 
-Snake::~Snake() {
-	
-}
-
 void Snake::move() {
 	snake.push(currDir);
 	snake.pop();

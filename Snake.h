@@ -31,7 +31,6 @@ enum Direction {
 class Snake {
 public:
 	Snake();
-	~Snake();
 	
 	void move();
 	void eat();
@@ -40,14 +39,12 @@ public:
 	
 	void render();
 	
-	static Direction getComplement(Direction dir);
-	
 private:
 	class SnakeBody {
 	public:
 		struct Segment {
 			Coordinate c;
-			Direction dir;
+			Direction dir; /// @todo remove this as it is not needed
 		};
 	
 		SnakeBody();
