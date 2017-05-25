@@ -27,6 +27,9 @@ const int SCRN_H = 600;
 const int SCRN_W = 600;
 
 Window::Window() {
+	
+	Window::initSDL();
+	
 	if( NULL ==
 		(window = SDL_CreateWindow(  // Create our Window
 			R_PRGMNAME,  // Window name
@@ -57,4 +60,26 @@ Window::~Window() {
 void Window::clear() {
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF); // Black
 	SDL_RenderClear(renderer);
+}
+
+void Window::initSDL() {
+	if(SDL_Init(SDL_INIT_VIDEO) < 0) // Init SDL with Video
+		EXIT("SDL Init Failed! " << SDL_GetError(), -0x101);
+	
+	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) // Set render scaling quality
+		EXIT("SDL Scaling Failed! " << SDL_GetError(), -0x101);
+	/*	
+	int flags = IMG_INIT_PNG | IMG_INIT_JPG; // Init png and jpg/jpeg loading
+	if(!(IMG_Init(flags) & flags))
+		EXIT("IMG SDL Init Failed! " << IMG_GetError(), -0x101);
+	
+	if(TTF_Init() < 0) // Init TTF and text rendering
+		EXIT("TTF SDL Init Failed! " << TTF_GetError(), -0x101);
+	
+	if(Mix_Init(MIX_INIT_OGG) < 0)
+		EXIT("Mixer Init Failed! " << Mix_GetError(), -0x101);
+	
+	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) //Initialize SDL_mixer
+		EXIT("Mixer Init Failed! " << Mix_GetError(), -0x101);
+	*/
 }

@@ -27,6 +27,7 @@ struct Window {
 	~Window();
 	
 	void clear();
+	static void initSDL();
 	
 	SDL_Window* window;
 	SDL_Renderer* renderer;
