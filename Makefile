@@ -26,7 +26,7 @@ L_SDLL = $(GRAPHICS) -LC:/Compiler/SDL/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_mi
 # ==============================  MACROS  ======================================
 CFLAGS = $(DEBUG) -Wall -std=c++11 -c
 LFLAGS = $(DEBUG) -Wall
-OBJS = $(BIN)/main.o $(BIN)/Game.o $(BIN)/Window.o $(BIN)/Snake.o $(BIN)/Fruit.o 
+OBJS = $(BIN)/res.o $(BIN)/main.o $(BIN)/Game.o $(BIN)/Window.o $(BIN)/Snake.o $(BIN)/Fruit.o 
 
 # ============================ RECEPIES ========================================
 
