@@ -54,7 +54,7 @@ void Game::loop() {
 		
 		renderAll();
 		
-		if(snake->getHead() == fruit->getLocation()) {
+		if(snake->head() == fruit->getLocation()) {
 			snake->eat();
 			delete fruit;
 			fruit = new Fruit();

@@ -36,7 +36,7 @@ public:
 	void move();
 	void eat();
 	void turn(Direction dir);
-	Coordinate getHead();
+	Coordinate head();
 	
 	void render();
 	
