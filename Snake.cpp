@@ -89,6 +89,9 @@ void Snake::SnakeBody::push(Direction dir) {
 		exit(0);
 		
 	/// @todo Check if we have eaten ourself or not
+	for(size_t i = 0; i < body.size(); ++i)
+		if(body[i]->c == next)
+			exit(0);
 	
 	body.push_back( new Segment{next, dir} );
 }
