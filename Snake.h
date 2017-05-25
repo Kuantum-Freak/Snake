@@ -45,18 +45,22 @@ public:
 private:
 	class SnakeBody {
 	public:
+		struct Segment {
+			Coordinate c;
+			Direction dir;
+		};
+	
 		SnakeBody();
 		~SnakeBody();
 		
 		void push(Direction dir);
 		void pop();
 		
-	private:
-		struct Segment {
-			Coordinate c;
-			Direction dir;
-		};
+		size_t size();
 		
+		Segment* operator[](size_t idx);
+		
+	private:		
 		std::deque<Segment*> body; // deque b.c we will need to change the tail node often
 		
 	} snake;
