@@ -19,17 +19,19 @@
 
 #include <SDL.h>
 
-extern const int SCRN_H;
-extern const int SCRN_W;
+extern const int SCRN_H; ///< The Window Height
+extern const int SCRN_W; ///< The Window Width
 
+/// @brief A Window struct to hold basic Window information
 struct Window {
 	Window();
 	~Window();
 	
-	void clear();
-	static void initSDL();
+	void clear(); ///< Clears out the Window contents
 	
-	SDL_Window* window;
-	SDL_Renderer* renderer;
+	static void initSDL(); ///< initializes SDL library 
+	
+	SDL_Window* window;     ///< Tha main Window
+	SDL_Renderer* renderer; ///< The renderer for our Window
 	
 };

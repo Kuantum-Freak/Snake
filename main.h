@@ -18,17 +18,22 @@
 #ifndef MAIN_H_INCLUDED
 #define MAIN_H_INCLUDED
 
+// Forward Declaration
 class Game;
 
+/// @brief A Cartesian Coordinate
 struct Coordinate {
-	int x;
-	int y;
+	int x; ///< x Coordinate
+	int y; ///< y Coordinate
 	
+	/// @brief Checks if 2 Coordinates are the same
+	/// @param b The Coordinate to check against
+	/// @return bool If the 2 Coordinates are the same
 	bool operator==(Coordinate b);
 };
 
-extern Game* gSnakeGame;
+extern Game* gSnakeGame; ///< The Snake Game
 
-int main(int argc, char* argv[]);
+int main(int argc, char* argv[]); ///< PRGM Entry Point
 
 #endif // MAIN_H_INCLUDED

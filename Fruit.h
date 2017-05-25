@@ -17,16 +17,21 @@
 
 #pragma once
 
+// Forward Declaration
 struct Coordinate;
 
+/// @brief A fruit on the screen
 class Fruit {
 public:
 	Fruit();
 	
-	void render();
+	void render(); ///< Render the Fruit on the Screen
+	
+	/// @brief Gets the location of Fruit
+	/// @return Coordinate The Coordinate of the Fruit
 	Coordinate getLocation();
 	
 private:
-	Coordinate loc;
+	Coordinate loc; ///< The location of the Fruit
 	
 };

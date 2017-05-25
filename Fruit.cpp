@@ -23,11 +23,11 @@
 #include "Game.h"
 
 Fruit::Fruit() {
-	loc = { rand() % MAP_W, rand() % MAP_H };
+	loc = { rand() % MAP_W, rand() % MAP_H }; // place the fruit randomly on the map
 }
 
 void Fruit::render() {
-	gSnakeGame->renderBlock(loc);
+	gSnakeGame->renderBlock(loc); // render the block
 }
 
 Coordinate Fruit::getLocation() {
