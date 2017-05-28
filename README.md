@@ -5,7 +5,8 @@
 
 
 # Snake #
-A graphical game of Snake. Uses "virtual" pixels (a group of pixel is a pixel in the game). Very simple game that I coded over a few days. 
+A graphical game of Snake. Uses a block of pixels as a pixel in the game. 
+Very simple game that I coded over a few days because I was bored. 
 
 
 
