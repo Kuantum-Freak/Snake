@@ -52,9 +52,8 @@ $(BIN)/res.o: res.rc info.h
 	$(RES) res.rc  $@
 	
 # Link
-.PHONY: debug	
-debug: DEBUG = -g -DDEBUG
-debug: $(OBJS)
+$(BINDIR)\main.exe: DEBUG = -g -DDEBUG
+$(BINDIR)\main.exe: $(OBJS)
 	$(CC) $^ -o $(BIN)/main.exe $(LFLAGS) $(L_SDLL)
 
 # ============================= PHONY RECEPIES =================================
