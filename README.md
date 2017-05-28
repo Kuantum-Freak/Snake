@@ -3,18 +3,21 @@
 </p>
 
 
+
 # Snake #
 A graphical game of Snake. Uses "virtual" pixels (a group of pixel is a pixel in the game). Very simple game that I coded over a few days. 
 
 
 
 ### Rules ###
-* https://cardgames.io/ginrummy/#rules
+* https://en.wikipedia.org/wiki/Snake_(video_game)
+* Use WSAD to move around the map
+* You lose if you eat yourself or run off the map
 
 
 
 ## Prerequisites ##
-None.
+Make sure you have the SDL libs installed. Please modify the Makefile in the root folder to reflect the directory you have SDL installed. 
 
 
 
@@ -33,8 +36,8 @@ run. If you want to play again, run the `Play.exe` in the root folder
 
 ## Built with ##
 #### SDL 2.0 ####
-https://www.libsdl.org/  
-https://www.libsdl.org/download-2.0.php
+* https://www.libsdl.org/  
+* https://www.libsdl.org/download-2.0.php
 
 
 
@@ -49,6 +52,7 @@ https://www.libsdl.org/download-2.0.php
 
 ## Authors ##
 * **Aryan Gupta**
+
 
 
 ## License ##
